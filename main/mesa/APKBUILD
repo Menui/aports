@@ -104,6 +104,11 @@ x86*)
 	;;
 armhf|armv7|aarch64)
 	_gallium_drivers="${_gallium_drivers},vc4,v3d,freedreno,kmsro,lima,panfrost,etnaviv,tegra"
+	_vulkan_drivers="${_vulkan_drivers},broadcom"
+	subpackages="
+			$subpackages
+			$pkgname-vulkan-broadcom:_vulkan
+			"
 	_gallium_provides="$_gallium_provides
 		$pkgname-dri-vc4=$pkgver-r$pkgrel
 		$pkgname-dri-v3d=$pkgver-r$pkgrel
@@ -310,6 +315,8 @@ _vulkan() {
 		_mv_vulkan radeon ;;
 	intel)
 		_mv_vulkan intel ;;
+	broadcom)
+		_mv_vulkan broadcom ;;
 	esac
 }
 
